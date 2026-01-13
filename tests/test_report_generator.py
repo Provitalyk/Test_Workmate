@@ -4,9 +4,10 @@ import tempfile
 import csv
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 from report_generator import ReportGenerator
 
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 @pytest.fixture
 def sample_csv_data():
@@ -34,7 +35,7 @@ def sample_csv_data():
 
 @pytest.fixture
 def create_temp_csv(sample_csv_data):
-    """Создаем временный CSV‑файл для тестов."""
+    """Создаем временный CSV‑файл для тестов"""
     with tempfile.NamedTemporaryFile(mode='w', delete=False, newline='', encoding='utf-8') as f:
         writer = csv.DictWriter(f, fieldnames=sample_csv_data[0].keys())
         writer.writeheader()
@@ -85,7 +86,7 @@ def test_empty_csv():
 
 
 def test_main_with_mocked_args(mocker):
-    """Тест main() с мокированными аргументами и чтением файла."""
+    """Тест main() с моками и чтением файла"""
     mocker.patch(
         'argparse.ArgumentParser.parse_args',
         return_value=argparse.Namespace(
